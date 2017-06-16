@@ -27,9 +27,6 @@ namespace Medicine.Models.Pacients
         public int? PacientId { get; set; }
         public virtual ICollection<Pacient>  Pacient{ get; set; }
 
-        [Display(Name = "Additional pictures")]
-        public int? AdditionalPictureId { get; set; }
-        public virtual AdditionalPicture AdditionalPicture { get; set; }
 
 
     }

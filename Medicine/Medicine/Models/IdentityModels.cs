@@ -32,7 +32,6 @@ namespace Medicine.Models
         public DbSet<DoctorType> DoctorTypes { get; set; }
         public DbSet<Pacient> Pacients { get; set; }
         public DbSet<DiseaseHistory> DiseaseHistories { get; set; }
-        public DbSet<AdditionalPicture> AdditionalPictures { get; set; }
         public DbSet<Schedule> Schedule { get; set; }
         public DbSet<Registration> Registration { get; set; }
         public DbSet<Timetable> Timetable { get; set; }

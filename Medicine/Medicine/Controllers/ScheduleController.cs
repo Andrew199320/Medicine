@@ -3,7 +3,6 @@ using Medicine.Models.BusinessLogic;
 using Medicine.Models.Doctors;
 using Medicine.Models.Pacients;
 using Medicine.Models.Schedules;
-using Medicine.Models.ViewModels;
 using PagedList;
 using System;
 using System.Collections.Generic;
