@@ -257,7 +257,6 @@
     <Compile Include="Models\Doctors\DoctorType.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Pacients\AdditionalPicture.cs" />
     <Compile Include="Models\Pacients\DiseaseHistory.cs" />
     <Compile Include="Models\Pacients\Pacient.cs" />
     <Compile Include="Models\RecordHistory.cs" />
