@@ -1,0 +1,241 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/Main")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row row-wrap">
+            <div class="brand-name col l4 m4 s12">
+                <p><span id="family">Family </span><span id="medicine">Medicine</span></p>
+            </div>
+            <div class="phone col col l8 m8 s12">
+                <p id="telephone"> <span><i class="material-icons">local_phone</i></span>800 934 432</p>
+                <span id="text-olny">We care about you 24 hours a day.</span>
+            </div>
+        </div>
+    </div>
+    <div class="row row-wrap hide-on-med-and-down">
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Dropdown Structure -->
+                    <ul id='dropdown1' class='dropdown-content resize-block'>
+                        <!-- Admin panel access -->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                            <li>
+                                @Html.ActionLink("Admin panel", "AdminPanel", "Home")
+                            </li>
+                        }
+                        <!-- Doctor panel access -->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+                        {
+                            string userName = User.Identity.Name;
+                            <li>
+                                <a href="@Url.Action("DoctorPage","Doctor", new { doctorName = userName })">My information</a>
+                            </li>
+                        }
+                        <!-- User panel access -->
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                        {
+                            string userName = User.Identity.Name;
+                            <li>
+                                <a href="@Url.Action("PacientPage","Pacient", new { pacientName = userName })">My information</a>
+                            </li>
+                        }
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                            </li>
+                            <li>
+                                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                            </li>
+                        }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="@Url.Action("EditPassword","Home")">Change Password</a>
+                            </li>
+                            <li>
+                                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                                }
+                            </li>
+                        }
+                    </ul>
+                    <ul class="menu-navigation">
+                        <li><a href="@Url.Action("Index","Home")" class="active-block-menu">Home</a></li>
+                        <li>
+                            <a href="@Url.Action("DoctorsView","Home")">Doctors</a>
+                        </li>
+                        <li>
+                            <a class='dropdown-button' href='#' data-activates='dropdown1'>Account</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*---------Side menu------*@
+
+    <ul id="slide-out" class="side-nav my-side-nav">
+        <li>
+            <div class="userView">
+                <div class="background center">
+                    <img src="~/Content/Images/Icons/caduceus-made-smaller.svg" style="min-height:40px;max-height:60px;" class="responsive-img " />
+                </div>
+            </div>
+        </li>
+        <li class="active-block-menu" ><a style="color:white!important;" href="@Url.Action("Index","Home")">Home</a></li>
+        <li>
+            <a href="@Url.Action("DoctorsView","Home")">Doctors</a>
+        </li>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <li>
+                @Html.ActionLink("Admin panel", "AdminPanel", "Home")
+            </li>
+        }
+        <!-- Doctor panel access -->
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Doctor"))
+        {
+            string userName = User.Identity.Name;
+            <li>
+                <a href="@Url.Action("DoctorPage","Doctor", new { doctorName = userName })">My information</a>
+            </li>
+        }
+        <!-- User panel access -->
+        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        {
+            string userName = User.Identity.Name;
+            <li>
+                <a href="@Url.Action("PacientPage","Pacient", new { pacientName = userName })">My information</a>
+            </li>
+        }
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <li>
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+            </li>
+            <li>
+                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+            </li>
+        }
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>
+                <a href="@Url.Action("EditPassword","Home")">Change Password</a>
+            </li>
+            <li>
+                @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <a href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                }
+            </li>
+        }
+    </ul>
+
+    <div class="col m12 s12 card hide-on-large-only wraper-block-button right-align">
+        <span style="display:block;">
+            <a href="#" data-activates="slide-out" class="button-collapse button-menu"><i class="material-icons medium">menu</i></a>
+        </span>
+
+    </div>
+
+    @RenderBody()
+
+    <footer class="footer">
+        <div class="row">
+            <div class="container">
+                <div class="col l4 m4 s12">
+                    <div class="col l12 m12 s12 top-margine">
+                        <div class="col l4 m4 s3 square center">
+                            <i class="fa fa-map-marker fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col l8 m8 s9 footer-text">
+                            <p>Ames Way 25, New York </p>
+                        </div>
+                    </div>
+                    <div class="col l12 m12 s12 top-margine">
+                        <div class="col l4 m4 s3 square center">
+                            <i class="fa fa-envelope-o fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col l8 m8 s9 footer-text">
+                            <p>med.center@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col l4 m4 s12">
+                    <div class="col l12 m12 s12 top-margine">
+                        <div class="col l4 m4 s3 square center">
+                            <i class="fa fa-phone fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col l8 m8 s9 footer-text">
+                            <p>800 934 432</p>
+                        </div>
+                    </div>
+                    <div class="col l12 m12 s12 top-margine">
+                        <div class="col l4 m4 s3 square center">
+                            <i class="fa fa-mobile fa-3x" aria-hidden="true"></i>
+                        </div>
+                        <div class="col l8 m8 s9 footer-text">
+                            <p>+48 345 233 657</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l4 m4 s12">
+
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2586.0777107760846!2d20.70128098273471!3d49.59628397331528!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473de5206dcbd20d%3A0x17e2dd1e27666822!2sUlica+Jana+Pawla+II%2C+Nowy+S%C4%85cz!5e0!3m2!1sru!2spl!4v1496856901572" frameborder="0" style="border:0; width:100%;height:100%;margin-top:25px;" allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr style="margin-top:25px;" />
+            <div class="container">
+                <p style="padding-top:20px;padding-bottom:30px;padding-left:25px;">
+                    Privacy Policy
+                </p>
+            </div>
+        </div>
+    </footer>
+    <script src="~/Scripts/jquery-3.1.1.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/materialize")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+
+        $(".button-collapse").sideNav();
+
+        $('.dropdown-button').dropdown({
+            inDuration: 300,
+            outDuration: 225,
+            constrainWidth: true, // Does not change width of dropdown to that of the activator
+            hover: false, // Activate on hover
+            gutter: 0, // Spacing from edge
+            belowOrigin: true, // Displays dropdown below the button
+            alignment: 'left', // Displays dropdown with edge aligned to the left of button
+            stopPropagation: false // Stops event propagation
+        }
+    );
+
+    });
+</script>

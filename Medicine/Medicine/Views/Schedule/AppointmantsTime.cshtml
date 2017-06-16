@@ -1,0 +1,44 @@
+﻿@model List<Medicine.Models.Schedules.Schedule>
+@{
+    ViewBag.Title = "AppointmantsTime";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col l12 m12 s12" style="min-height:300px;">
+            <div class="col l12 m12 s12 card z-depth-1-half"  style="margin-top:15px; max-height:100%!important;">
+                <h5 class="center" style="margin-top:10px; margin-bottom:10px;">Select the appointment time </h5> 
+            </div>
+            @foreach (var item in Model)
+            {
+                if (item.isBooked == true)
+                {
+                        <div class="time-blocks-reg" >
+                            <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                        </div>
+                    }
+                    else
+                    {
+                        if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="time-blocks">
+                                <a href="@Url.Action("AppointmantRegistration","Schedule",new { id = item.ScheduleId})">
+                                    <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                                </a>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="time-blocks">
+                                <a href="@Url.Action("Login","Account")">
+                                    <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                                </a>
+                            </div>
+                        }
+                    }               
+            }
+        </div>
+    </div>
+</div>
+

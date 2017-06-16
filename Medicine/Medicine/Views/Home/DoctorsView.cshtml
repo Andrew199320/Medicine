@@ -1,0 +1,43 @@
+﻿@model PagedList.IPagedList<Medicine.Models.Doctors.Doctor>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "DoctorsView";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div>
+            @Html.Action("_DoctorViewPartial", "Home")
+        </div>
+
+        <div id="result">
+            @foreach (var item in Model)
+            {
+                string name = item.Name + " " + item.Sername;
+                <div class="col l3 m4 s12 card z-depth-1-half doctor-wrapper">
+                    <div class="img-wraper">
+                        <div style="height:200px!important;">
+                            <img src="@item.Photo" class="doc-img"/>
+                        </div>
+                       
+                    </div>
+                    <a class="inf-block" href="@Url.Action("ShortDoctorInfo","Doctor", new { id = item.DoctorId})"  >
+                        <div class="text-name center" data-id="@item.DoctorId">
+                            <span>@name</span>
+                            <br />
+                            <span>@item.DoctorType.Name</span>
+                        </div>
+                    </a>
+                    <div class="center">
+                        <a class="btn schedule-btn " href="@Url.Action("ScheduleByDoctor", "Home",new { id = item.DoctorId})">Schedule</a>
+                    </div>
+                </div>
+            }
+        </div>
+      
+    </div>
+</div>
+<div class="center">
+    @Html.PagedListPager(Model, page => Url.Action("DoctorsView", new { page }))
+</div>

@@ -1,0 +1,29 @@
+﻿@model List<Medicine.Models.Pacients.DiseaseHistory>
+
+<div class="col l12 m12 s12">
+    @if (Model.Count > 0)
+    {
+        <div class="card disease-title">
+            <p class="center">Disease history</p>
+        </div>
+        <div class="col l12 m12 s12" style="overflow-x:auto; max-height:850px;">
+            @foreach (var item in Model)
+            {
+                <div class="card history-wraper">
+                    <span class="disease-name">Diseas: @item.DiseaseName</span>
+                    <span class="disease-name">Contraindications:</span>
+                    <span class="diseas-description"> @item.Contraindications</span>
+                    <span class="disease-name">Additional information:</span>
+                    <span class="diseas-description">@item.AdditionalInformation</span>
+                    <span class="disease-name">Onset of disease @item.StartFrom.ToShortDateString()</span>
+
+                    <span class="diseas-description" style="text-align:right!important;">posted: @item.WhenAdded</span>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <h5 class="center" style="margin-top:20px;">You don't have disease history.</h5>
+    }
+</div>

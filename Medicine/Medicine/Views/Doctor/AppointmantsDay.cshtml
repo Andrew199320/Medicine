@@ -1,0 +1,31 @@
+﻿@model List<Medicine.Models.Schedules.Schedule>
+@{
+    ViewBag.Title = "AppointmantsDay";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="col l12 m12 s12 " style="min-height:300px;">
+            <div class="col l12 m12 s12 card color-line z-depth-1-half" style="margin-top:15px;">
+                <h5 class="center" style="margin-top:10px; margin-bottom:10px;">Appointments time</h5>
+            </div>
+            @foreach (var item in Model)
+            {
+                if (item.TimeFrom.Value.ToShortDateString() == DateTime.Now.ToShortDateString())
+                {
+                    <div class="schedule-time-active">
+                        <a href="@Url.Action("GetUserById", "Pacient", new { id = item.PacientId})" title="Show pacient">
+                            <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                        </a>
+                    </div>
+                }
+                else
+                {
+                    <div class="schedule-time">
+                        <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+</div>

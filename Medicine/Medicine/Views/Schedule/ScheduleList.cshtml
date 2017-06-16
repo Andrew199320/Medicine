@@ -1,0 +1,65 @@
+﻿@model  PagedList.IPagedList<Medicine.Models.Doctors.Doctor>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Schedule List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col l6 m6 s6">
+                <a class="btn buttonsColor" href="@Url.Action("AdminPanel","Home")"><i class="material-icons medium left">reply</i>Back</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+
+                @if (Model.Count > 0)
+                {
+                    <table class="responsive-table striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Type
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                string name = item.Name + " " + item.Sername;
+                                <tr>
+                                    <th>
+                                        @Html.DisplayFor(x => name)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayFor(model => item.DoctorType.Name)
+                                    </th>
+                                    <th>
+                                        <a class="btn iconClass iconAdd " title="Create schedule for doctor" href="@Url.Action("WorkingJournal", new { id = item.DoctorId})"><i class="material-icons left">control_point</i></a>
+                                    </th>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+                else
+                {
+                    <h4 class="center">
+                        Hasn't been added any record
+                    </h4>
+                }
+
+            </div>
+        </div>
+        <div class="center">
+            @Html.PagedListPager(Model,page=>Url.Action("ScheduleList", new { page}))
+        </div>
+    </div>
+</div>
+
+

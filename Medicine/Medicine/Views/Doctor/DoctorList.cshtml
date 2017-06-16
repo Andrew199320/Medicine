@@ -1,0 +1,128 @@
+﻿@model PagedList.IPagedList<Medicine.Models.Doctors.Doctor>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Doctor List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col l6 m6 s6">
+                <a class="btn buttonsColor" href="@Url.Action("AdminPanel","Home")"><i class="material-icons medium left">reply</i>Back</a>
+                <a class="btn buttonsColor" href="@Url.Action("Register","Account")"><i class="material-icons medium left">add_circle</i>Add doctor</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12">
+
+                @if (Model.Count > 0)
+                {
+                       <table class="responsive-table striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Photo
+                            </th>
+                            <th>
+                                Name
+                            </th>
+                            <th>
+                                Sername
+                            </th>
+                            <th>
+                                Gender
+                            </th>
+                            <th>
+                                Unique number
+                            </th>
+                            <th>
+                                Age
+                            </th>
+                            <th>
+                                Birthday
+                            </th>
+                            <th>
+                                Started working
+                            </th>
+                            <th>
+                                Address
+                            </th>
+                            <th>
+                                Mobile
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th>
+                                    <img src="@item.Photo" class="avatarPicture" alt="" />
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Sername)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Sex)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.UniqueNumber)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Age )
+                                </th>
+                                @{
+                                    string birthday = item.Birthday.ToShortDateString();
+                                    string work = item.StartWorking.ToShortDateString();
+
+                                }
+                                <th>
+                                    @Html.DisplayFor(model => birthday)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => work)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Mobile)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.Email)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(model => item.DoctorType.Name)
+                                </th>
+                                <th>
+                                    <a class="btn iconClass iconDelete " href="@Url.Action("DeleteDoctor", new { id = item.DoctorId})"><i class="material-icons left">delete_forever</i></a>
+                                    <a class="btn iconClass iconEdit " href="@Url.Action("EditDoctor", new { id = item.DoctorId})"><i class="material-icons left">mode_edit</i></a>
+                                </th>
+                            </tr>
+                                    }
+                    </tbody>
+                </table>
+                }
+                else
+                {
+                    <h4 class="center">
+                        Hasn't been added any record
+                    </h4>
+                }
+             
+            </div>
+        </div>
+        <div class="center">
+            @Html.PagedListPager(Model, page => Url.Action("DoctorList", new {page}))
+        </div>
+    </div>
+</div>

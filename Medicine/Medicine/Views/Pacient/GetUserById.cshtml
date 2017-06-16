@@ -1,0 +1,190 @@
+﻿@model List<Medicine.Models.Pacients.DiseaseHistory>
+@{
+    ViewBag.Title = "GetUserById";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+
+}
+<link href="~/Scripts/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/air-datepicker-master/dist/js/datepicker.min.js"></script>
+
+@if (Model.Count > 0)
+{
+    <div class="container">
+        <div class="row card">
+
+            <div class="col l4 m5 s12">
+
+                <div class="col l12  m12 s12 photo-block" style="padding-left:0px!important;padding-right:0px!important; margin-left:10px;">
+                    <img src="@ViewBag.Pacient.Picture" style="margin-top:8px; border-radius:3px;" class="materialboxed user-photo responsive-img" />
+                </div>
+
+                <div class="col l12 m12 s12 main-info-wrap card" style="margin-left:10px;">
+                    <table class="short-table-info">
+                        <tr>
+                            <th>Name:</th>
+                            <th>@ViewBag.Pacient.Name</th>
+                        </tr>
+                        <tr>
+                            <th>Surname:</th>
+                            <th>@ViewBag.Pacient.Surname</th>
+                        </tr>
+                        <tr>
+                            <th>Gender:</th>
+                            <th>@ViewBag.Pacient.Sex</th>
+                        </tr>
+                        <tr>
+                            <th>Age:</th>
+                            <th>@ViewBag.Pacient.Age</th>
+                        </tr>
+                        <tr>
+                            <th>Birthday:</th>
+                            <th>@ViewBag.Pacient.Birthday.ToShortDateString()</th>
+                        </tr>
+                        <tr>
+                            <th>Unique number:</th>
+                            <th>@ViewBag.Pacient.UniqueNumber</th>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+
+            <div class="col l7 push-l1 m6 push-m1 s12">
+                <div>
+                    <a href="#" class="btn submitButton" style="margin-top:8px; margin-left:10px;" id="myBtn">Create history</a>
+
+                    <div id="myModal" class="modal-window">
+                        @using (Html.BeginForm("CreateDeasisHistory", "Pacient", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="input-field col l12 m12 s12">
+                                <input name="disName" id="disName" placeholder="Disease name" />
+                            </div>
+                            <div class="input-field col l12 m12 s12">
+                                <input id="datetimepicker1" type='text' class='datepicker-here' data-timepicker="false" name="startFrom" placeholder="Onset of disease" />
+                            </div>
+                            <div class="input-field col l12 m12 s12">
+                                <textarea type="text" name="contraindications" id="contraindications" placeholder="Contraindications"></textarea>
+
+                            </div>
+                            <div class="input-field col l12 m12 s12">
+                                <textarea type="text" name="additionalInformation" id="additionalInformation" placeholder="Additional information"></textarea>
+                            </div>
+                            <input type="number" name="id" hidden value="@ViewBag.Pacient.PacientId" />
+
+                            <div class="col l12 m12 s12 center">
+                                <input type="submit" class="btn submitButton" value="Save" />
+                                <button type="button" class="btn submitButton cancel-button">Cancel</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="col l12 m12 s12" style="overflow-x:auto; max-height:525px;">
+                    @foreach (var item in Model)
+                    {
+                        <div class="card history-wraper">
+                            <span class="disease-name">Diseas: @item.DiseaseName</span>
+                            <span class="disease-name">Contraindications:</span>
+                            <span class="diseas-description"> @item.Contraindications</span>
+                            <span class="disease-name">Additional information:</span>
+                            <span class="diseas-description">@item.AdditionalInformation</span>
+                            <span class="disease-name">Onset of disease @item.StartFrom.ToShortDateString()</span>
+                           
+                            <span class="diseas-description" style="text-align:right!important;">posted: @item.WhenAdded</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="container">
+        <div class="row card">
+
+            <div class="col l4 m5 s12">
+
+                <div class="col l12  m12 s12 photo-block" style="padding-left:0px!important;padding-right:0px!important; margin-left:10px;">
+                    <img src="@ViewBag.Pacient.Picture" style="margin-top:8px; border-radius:3px;" class="materialboxed user-photo responsive-img" />
+                </div>
+
+                <div class="col l12 m12 s12 main-info-wrap card" style="margin-left:10px;">
+                    <table class="short-table-info">
+                        <tr>
+                            <th>Name:</th>
+                            <th>@ViewBag.Pacient.Name</th>
+                        </tr>
+                        <tr>
+                            <th>Surname:</th>
+                            <th>@ViewBag.Pacient.Surname</th>
+                        </tr>
+                        <tr>
+                            <th>Gender:</th>
+                            <th>@ViewBag.Pacient.Sex</th>
+                        </tr>
+                        <tr>
+                            <th>Age:</th>
+                            <th>@ViewBag.Pacient.Age</th>
+                        </tr>
+                        <tr>
+                            <th>Birthday:</th>
+                            <th>@ViewBag.Pacient.Birthday.ToShortDateString()</th>
+                        </tr>
+                        <tr>
+                            <th>Unique number:</th>
+                            <th>@ViewBag.Pacient.UniqueNumber</th>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col l7 push-l1 m6 push-m1 s12">
+                <div>
+                    <a href="#" class="btn submitButton" style="margin-top:8px; margin-left:10px;" id="myBtn">Create history</a>
+                    <h5 class="center" style="margin-top:20px;">Pacient doesn't have disease history.</h5>
+                    <div id="myModal" class="modal-window">
+                        @using (Html.BeginForm("CreateDeasisHistory", "Pacient", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="input-field col l12 m12 s12">
+                                <input name="disName" id="disName" placeholder="Disease name" />
+                            </div>
+                            <div class="input-field col l12 m12 s12">
+                                <input id="datetimepicker1" type='text' class='datepicker-here' data-timepicker="false" name="startFrom" placeholder="Onset of disease" />
+                            </div>
+                            <div class="input-field col l12 m12 s12">
+                                <textarea type="text" name="contraindications" id="contraindications" placeholder="Contraindications"></textarea>
+
+                            </div>
+                            <div class="input-field col l12 m12 s12">   
+                                <textarea type="text" name="additionalInformation" id="additionalInformation" placeholder="Additional information"></textarea>
+                            </div>
+                            <input type="number" name="id" hidden value="@ViewBag.Pacient.PacientId" />
+
+                            <div class="col l12 m12 s12 center">
+                                <input type="submit" class="btn submitButton" value="Save" />
+                                <button type="button" class="btn submitButton cancel-button">Cancel</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script>
+    var btn = document.getElementById('myBtn');
+    var modal = document.getElementById("myModal");
+    var btnClose = document.getElementsByClassName("cancel-button")[0];
+
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+
+    btnClose.onclick = function () {
+        modal.style.display = "none";
+    }
+
+</script>

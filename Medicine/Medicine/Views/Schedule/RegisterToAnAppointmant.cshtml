@@ -1,0 +1,67 @@
+﻿@model  Medicine.Models.Schedules.Schedule
+@{
+    ViewBag.Title = "RegisterToAnAppointmant";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col l6 m6 s6">
+                <a class="btn buttonsColor" href="@Url.Action("AdminPanel","Home")"><i class="material-icons medium left">reply</i>Back</a>
+            </div>
+        </div>
+        @using (Html.BeginForm("RegisterToAnAppointmant", "Schedule", FormMethod.Post,new { @class = "form-horizontal", role = "form", }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => Model.Date)
+            @Html.HiddenFor(m => Model.DoctorId)
+            @Html.HiddenFor(m => Model.isBooked)
+            @Html.HiddenFor(m => Model.IsVisible)
+            @Html.HiddenFor(m => Model.PacientId)
+            @Html.HiddenFor(m => Model.ScheduleId)
+            @Html.HiddenFor(m => Model.TimeFrom)
+            @Html.HiddenFor(m => Model.TimeTo)
+            @Html.HiddenFor(m => Model.TimetableId)
+            @Html.HiddenFor(m => Model.WhenAdded)
+            @Html.HiddenFor(m => Model.WhenDeleted)
+            @Html.HiddenFor(m => Model.WhenModified)
+            @Html.HiddenFor(m => Model.WhoAdded)
+            @Html.HiddenFor(m => Model.WhoDeleted)
+            @Html.HiddenFor(m => Model.WhoModified)
+        <div class="row">
+            <div class="col l12 m12 s12">
+                    <table class="responsive-table striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Doctor
+                                </th>
+                                <th>
+                                    Date and time
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                @{
+                                    string name = Model.Doctor.Name + " " + Model.Doctor.Sername;
+                                }
+                                <th>
+                                    @Html.DisplayFor(model => name)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayFor(model => Model.TimeFrom)
+                                </th>
+                            </tr>          
+                        </tbody>
+                    </table>
+                Are you sure?
+            </div>
+        </div>
+        <input type="submit" class="btn btn waves-effect waves-light submitButton" value="Register" />
+        }
+    </div>
+</div>
+
+

@@ -1,0 +1,123 @@
+﻿@model Medicine.Models.Doctors.Doctor
+@{
+    ViewBag.Title = "Edit Doctor By Name ";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<link href="~/Scripts/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/air-datepicker-master/dist/js/datepicker.min.js"></script>
+@using (Html.BeginForm("EditDoctorByName", "Doctor", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.HiddenFor(model => Model.DoctorId)
+    @Html.HiddenFor(model => Model.UserName)
+    @Html.HiddenFor(model => Model.Email)
+    @Html.HiddenFor(model => Model.WhenAdded)
+    @Html.HiddenFor(model => Model.WhoAdded)
+    @Html.HiddenFor(model => Model.WhenModified)
+    @Html.HiddenFor(model => Model.WhoModified)
+    @Html.HiddenFor(model => Model.IsVisible)
+
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row card">
+            <div class="row">
+            </div>
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <h5 class="center" style="margin-top:20px;margin-bottom:20px;">You are editing your information account</h5>
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { name = "Name", @class = "validate" } })
+                        @Html.LabelFor(model => model.Name, new { @for = "Name" })
+                        @Html.ValidationMessage("Name", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Sername, new { htmlAttributes = new { name = "Surname", @class = "validate" } })
+                        @Html.LabelFor(model => model.Sername, new { @for = "Surname" })
+                        @Html.ValidationMessage("Surname", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.DropDownListFor(m => m.Sex, (IEnumerable<SelectListItem>)ViewBag.Sex)
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">description</i>
+                        @Html.DropDownListFor(x => Model.DoctorTypeId, (IEnumerable<SelectListItem>)ViewBag.Type, "Choose a type")
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <label for="datetimepicker1" class="marginTop">Birthday</label>
+                        <input id="datetimepicker1" type='text' class='datepicker-here' data-timepicker="false" name="Birthday" value="@Model.Birthday.ToShortDateString()" />
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.UniqueNumber, new { htmlAttributes = new { name = "UniqueNumber", @class = "validate" } })
+                        @Html.LabelFor(model => model.UniqueNumber, new { @for = "UniqueNumber" })
+                        @Html.ValidationMessage("UniqueNumber", "", new { @class = "input-validation-error" })
+                    </div>
+
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">assignments</i>
+                        @Html.EditorFor(x => x.Age, new { htmlAttributes = new { name = "Age", @class = "validate" } })
+                        @Html.LabelFor(model => model.Age, new { @for = "Age" })
+                        @Html.ValidationMessage("Age", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <label for="datetimepicker3" class="marginTop">Started working</label>
+                        <input id="datetimepicker3" type='text' class='datepicker-here' data-timepicker="false" name="StartWorking" value="@Model.StartWorking.ToShortDateString()" />
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Mobile, new { htmlAttributes = new { name = "Mobile", @class = "validate" } })
+                        @Html.LabelFor(model => model.Mobile, new { @for = "Mobile" })
+                        @Html.ValidationMessage("Mobile", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Address, new { htmlAttributes = new { name = "Address", @class = "validate" } })
+                        @Html.LabelFor(model => model.Address, new { @for = "Address" })
+                        @Html.ValidationMessage("Address", "", new { @class = "input-validation-error" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="col l8 push-l2 m8 push-m2 s12">
+                <img src="@Model.Photo" style="width:150px; height: 150px;" alt="" />
+            </div>
+            <div class="file-field input-field col l8 push-l2 m8 push-m2 s12">
+                <div class="btn submitButton">
+                    <span>File</span>
+                    <input type="file" name="Photo" value="@Model.Photo">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text" value="@Model.Photo">
+                </div>
+
+            </div>
+
+
+            <div class="col l8 push-l2 m8 push-m2 s12 center">
+                <button type="submit" class="btn submitButton" style="margin-top:25px;margin-bottom:35px;"><i class="material-icons left">save</i>Save</button>
+            </div>
+        </div>
+    </div>
+}
+<script src="~/Scripts/jquery-3.1.1.js"></script>
+<script src="~/Scripts/materialize/materialize.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 150 // Creates a dropdown of 15 years to control year
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

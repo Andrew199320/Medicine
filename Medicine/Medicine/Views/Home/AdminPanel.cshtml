@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewBag.Title = "Admin Panel";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="container">
+    <div class="row">
+
+        <div class="col s12 l2 m3">
+            <a href="@Url.Action("TypeList","Doctor")">
+                <div class="card z-depth-1 cardWrap">
+                    <div class="card-content cardText">
+                        <div style="text-align:center">
+                            <div class="cardIcon">
+                                <i class="material-icons">format_list_numbered</i>
+                            </div>
+                            <div>Doctor types</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col s12 l2 m3">
+            <a href="@Url.Action("DoctorList","Doctor")">
+                <div class="card z-depth-1 cardWrap">
+                    <div class="card-content cardText">
+                        <div style="text-align:center">
+                            <div class="cardIcon">
+                                <i class="material-icons">person</i>
+                            </div>
+                            <div>Doctors</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col s12 l2 m3">
+            <a href="@Url.Action("ScheduleList","Schedule")">
+                <div class="card z-depth-1 cardWrap">
+                    <div class="card-content cardText">
+                        <div style="text-align:center">
+                            <div class="cardIcon">
+                                <i class="material-icons">insert_drive_file</i>
+                            </div>
+                            <div>Schedule</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col s12 l2 m3">
+            <a href="@Url.Action("PacientList","Pacient")">
+                <div class="card z-depth-1 cardWrap">
+                    <div class="card-content cardText">
+                        <div style="text-align:center">
+                            <div class="cardIcon">
+                                <i class="material-icons">group</i>
+                            </div>
+                            <div>Pacients</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <div class="col s12 l2 m3">
+            <a href="@Url.Action("TimetableList","Schedule")">
+                <div class="card z-depth-1 cardWrap">
+                    <div class="card-content cardText">
+                        <div style="text-align:center">
+                            <div class="cardIcon">
+                                <i class="material-icons">today</i>
+                            </div>
+                            <div>Timetable</div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+    </div>
+</div>

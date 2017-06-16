@@ -1,0 +1,39 @@
+﻿@model Medicine.Models.Schedules.Schedule
+@{
+    ViewBag.Title = "_AppointmantRegistration";
+}
+<div class="container">
+    <div class="row">
+        <div class="col l6 push-l3 m8 push-m2 s12 card reservation-block">
+            <h5 class="center" style="margin-top:20px;margin-bottom:10px;">You would like to reserve the meeting.</h5>
+            <div>
+                <p>Doctor: @Model.Doctor.Sername @Model.Doctor.Name</p>
+                <p>Date: @Model.Date.ToShortDateString()</p>
+                <p>Time: @Model.TimeFrom.Value.ToShortTimeString() - @Model.TimeTo.Value.ToShortTimeString()</p>
+                <h6 class="center" style="font-weight:500;font-size:1.2em!important;padding-top:20px;">If everything is good, click "Reservation"</h6>
+            </div>
+            <div class="center">
+                @using (Html.BeginForm("AppointmantRegistration", "Schedule", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.DoctorId)
+                    @Html.HiddenFor(x => x.Date)
+                    @Html.HiddenFor(x => x.IsVisible)
+                    @Html.HiddenFor(x => x.ScheduleId)
+                    @Html.HiddenFor(x => x.TimetableId)
+                    @Html.HiddenFor(x => x.TimeFrom)
+                    @Html.HiddenFor(x => x.TimeTo)
+                    @Html.HiddenFor(x => x.WhenAdded)
+                    @Html.HiddenFor(x => x.WhenDeleted)
+                    @Html.HiddenFor(x => x.WhenModified)
+                    @Html.HiddenFor(x => x.WhoAdded)
+                    @Html.HiddenFor(x => x.WhoDeleted)
+                    @Html.HiddenFor(x => x.WhoModified)
+
+                    <input type="submit" value="Reservation" style="margin-top:20px;margin-bottom:15px;" class="btn submitButton" />
+                }
+            </div>
+        </div>
+    </div> 
+</div>
+

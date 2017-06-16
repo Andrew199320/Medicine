@@ -1,0 +1,67 @@
+﻿@model List<Medicine.Models.Schedules.Schedule>
+@{
+    ViewBag.Title = "_WorkingDayPartial";
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+
+}
+
+<div class="col l12 m12 s12 time-block-wrapper" id="selected">
+    <div class="col l12 m12 s12 color-line">
+        <a href="" class="btn week-button"><i class="material-icons left">reply</i>go back</a>
+    </div>
+
+    <div style="margin-top:65px;">
+        @if (Model.Count > 0)
+        {
+
+            <div class="top-title single-time-block">
+                @{
+                    DateTime nd = ViewBag.Date;
+                    string date = nd.Day.ToString();
+                    string dayOfWeek = nd.DayOfWeek.ToString();
+                    string month = System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat.GetMonthName(nd.Month);
+                }
+                <div class="col l12 m12 s12">
+                    <p>@date @month</p>
+                </div>
+                <p>@dayOfWeek</p>
+            </div>
+
+                    foreach (var item in Model)
+                    {
+                        <div class="single-time-block">
+                            @if (item.TimeFrom.Value.ToShortDateString() == item.Date.ToShortDateString())
+                            {
+                                if (item.isBooked == true)
+                                {
+                                    <div class="time-text-block-booked">
+                                        <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="time-text-block">
+                                        <a href="@Url.Action("AppointmantRegistration","Schedule",new { id = item.ScheduleId})">
+                                            <p>@item.TimeFrom.Value.ToShortTimeString()  - @item.TimeTo.Value.ToShortTimeString()</p>
+                                        </a>
+                                    </div>
+                                }
+
+                            }
+                        </div>
+                        }
+
+                    }
+                    else
+                    {
+                        <p>No data</p>
+                    }
+
+    </div>
+ 
+
+
+</div>
+
+<script src="~/Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>

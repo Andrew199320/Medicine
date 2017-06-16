@@ -1,0 +1,51 @@
+﻿@model Medicine.Models.Schedules.Timetable
+@{
+    ViewBag.Title = "Create doctor";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/Scripts/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/air-datepicker-master/dist/js/datepicker.min.js"></script>
+
+@using (Html.BeginForm("CreateTimetable", "Schedule", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row card">
+            <div class="row">
+                <div class="col l3 m4 s6" style="margin-top:10px;margin-left:10px;">
+                    <a href="@Url.Action("TimetableList", "Schedule")" class="btn buttonsColor">
+                        <i class="material-icons left">reply</i>
+                        Back
+                    </a>
+                </div>
+            </div>
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <h5 class="center" style="margin-top:20px;margin-bottom:20px;">You are creating new timetable view</h5>
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { name = "Name", @class = "validate" } })
+                        @Html.LabelFor(model => model.Name, new { @for = "Name" })
+                        @Html.ValidationMessage("Name", "", new { @class = "input-validation-error" })
+                    </div>
+                </div>
+                <div class="col l8 push-l2 m8 push-m2 s12 center">
+                    <button type="submit" class="btn submitButton" style="margin-top:25px;margin-bottom:35px;"><i class="material-icons left">save</i>Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

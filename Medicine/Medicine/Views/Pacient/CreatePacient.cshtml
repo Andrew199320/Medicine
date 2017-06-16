@@ -1,0 +1,96 @@
+﻿@model Medicine.Models.Pacients.Pacient
+@{
+    ViewBag.Title = "Create doctor";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+<link href="~/Scripts/air-datepicker-master/dist/css/datepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/air-datepicker-master/dist/js/datepicker.min.js"></script>
+@using (Html.BeginForm("CreatePacient", "Pacient", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="row card">
+            @*<div class="row">
+                <div class="col l3 m4 s6">
+                    <a href="@Url.Action("DoctorList", "Doctor")" class="btn buttonsColor">
+                        <i class="material-icons left">reply</i>
+                        Back
+                    </a>
+                </div>
+            </div>*@
+            <div class="col l12 m12 s12">
+                <div class="row">
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <h5 class="center" style="margin-top:20px;margin-bottom:20px;">Fill up the form please</h5>
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Name, new { htmlAttributes = new { name = "Name", @class = "validate" } })
+                        @Html.LabelFor(model => model.Name, new { @for = "Name" })
+                        @Html.ValidationMessage("Name", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Surname, new { htmlAttributes = new { name = "Surname", @class = "validate" } })
+                        @Html.LabelFor(model => model.Surname, new { @for = "Surname" })
+                        @Html.ValidationMessage("Surname", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.UniqueNumber, new { htmlAttributes = new { name = "UniqueNumber", @class = "validate" } })
+                        @Html.LabelFor(model => model.UniqueNumber, new { @for = "UniqueNumber" })
+                        @Html.ValidationMessage("UniqueNumber", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.DropDownListFor(m => m.Sex, (IEnumerable<SelectListItem>)ViewBag.Sex)
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <label for="datetimepicker1" class="marginTop">Birthday</label>
+                        <input id="datetimepicker1" type='text' class='datepicker-here' data-timepicker="false" name="Birthday" />
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">account_circle</i>
+                        @Html.EditorFor(x => x.Age, new { htmlAttributes = new { name = "Age", @class = "validate" } })
+                        @Html.LabelFor(model => model.Age, new { @for = "Age" })
+                        @Html.ValidationMessage("Age", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">assignments</i>
+                        @Html.EditorFor(x => x.Address, new { htmlAttributes = new { name = "Address", @class = "validate" } })
+                        @Html.LabelFor(model => model.Address, new { @for = "Address" })
+                        @Html.ValidationMessage("Address", "", new { @class = "input-validation-error" })
+                    </div>
+                    <div class="input-field col l8 push-l2 m8 push-m2 s12">
+                        <i class="material-icons prefix">settings_cell</i>
+                        @Html.EditorFor(x => x.Mobile, new { htmlAttributes = new { name = "Mobile", @class = "validate" } })
+                        @Html.LabelFor(model => model.Mobile, new { @for = "Mobile" })
+                        @Html.ValidationMessage("Mobile", "", new { @class = "input-validation-error" })
+                    </div>
+                </div>
+            </div>
+            <div class="file-field input-field col l8 push-l2 m8 push-m2 s12">
+                <div class="btn submitButton">
+                    <span>Photo</span>
+                    <input type="file" name="Picture">
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+            </div>
+            <div class="col l8 push-l2 m8 push-m2 s12 center">
+                <button type="submit" class="btn submitButton" style="margin-top:25px;margin-bottom:30px;"><i class="material-icons left">save</i>Save</button>
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+</script>

@@ -1,0 +1,44 @@
+﻿@model Medicine.Models.Doctors.Doctor
+@{
+    Layout = "~/Views/Shared/_EmptyLayout.cshtml";
+}
+
+<div class="find-form card">
+    <div class="row">
+        @using (Ajax.BeginForm("_SelectedDoctorPartial", "Home", new AjaxOptions { UpdateTargetId = "result", HttpMethod = "Post" }))
+        {
+            <div class="col l3 m3 s12">
+                @Html.DropDownListFor(x => Model.DoctorId, (IEnumerable<SelectListItem>)ViewBag.Doctor, "Select doctor", new { @class = "dropdown-list" })
+            </div>
+            <div class="col l3 m3 s12">
+                @Html.DropDownListFor(x => Model.DoctorTypeId, (IEnumerable<SelectListItem>)ViewBag.Type, "Select type", new { @class = "dropdown-list" })
+            </div>
+            <div class="col l2 m3 s12 button-search center">
+                <input type="submit" class="btn submitButton" @*style="margin-top:20px;margin-bottom:10px;height:80px;"*@ value="Search" />
+            </div>
+
+        }
+    </div>
+        </div>
+
+        <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+        <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script src="~/Scripts/materialize/materialize.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('select').material_select();
+    });
+
+    $('.dropdown-button').dropdown({
+        inDuration: 300,
+        outDuration: 225,
+        constrainWidth: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: true, // Displays dropdown below the button
+        alignment: 'left', // Displays dropdown with edge aligned to the left of button
+        stopPropagation: false // Stops event propagation
+    }
+);
+</script>

@@ -1,0 +1,150 @@
+﻿@model  PagedList.IPagedList<Medicine.Models.Schedules.Schedule>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Working Journal";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/Scripts/jquery-3.1.1.min.js" type="text/javascript"></script>
+<div class="container">
+    <div class="row">
+        <div class="row">
+            <div class="col l6 m6 s6">
+                <a class="btn buttonsColor" href="@Url.Action("ScheduleList","Schedule")"><i class="material-icons medium left">reply</i>Back</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col l12 m12 s12 addForm ">
+                <div class="fixed-action-btn col l12 m12 s12" style="position:relative;height:60px;"> 
+                    <a class="btn btn-floating btn-large waves-light red addButton"><i class="material-icons" title="Add a schedule">add</i></a>
+                </div>
+               
+                <div class="col l8 push-l2 m8 push-m2 s12 card">
+                    <div class="input-field col l12 m12 s12 AjaxForm" style="display:none; margin-bottom:50px;">
+                        @Html.Action("CreateJournal", "Schedule", new { id = ViewBag.DoctorId })
+                    </div>
+                </div>
+                <div class="col l12 m12 s12">
+                    @if (Model.Count > 0)
+                    {
+                        <table style="margin-top:25px;" class="responsive-table highlight bordered">
+                            <thead>
+                                <tr class="tableLine">
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Time: from
+                                    </th>
+                                    <th>
+                                        Time: to
+                                    </th>
+                                    <th>
+                                        Pacient
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                            {
+                                string free = "No one haven't register";
+                                string from = item.TimeFrom.Value.ToShortTimeString();
+                                string to = item.TimeTo.Value.ToShortTimeString();
+                                string date = item.Date.ToShortDateString();
+                                DateTime todays = DateTime.Today;
+                                string dateNow = todays.ToShortDateString();
+                            <tr>
+                                @if (date.CompareTo(dateNow) == 0)
+                                    {
+                                    <th style="background:#139597;">
+                                        @Html.DisplayFor(x => date)
+                                    </th>
+                                    <th style="background:#139597;">
+                                        @Html.DisplayFor(x => from)
+                                    </th>
+                                    <th style="background:#139597;">
+                                        @Html.DisplayFor(x => to)
+                                    </th>
+                                        if (item.PacientId != null)
+                                        {
+                                            string pacient = item.Pacient.Name + " " + item.Pacient.Surname;
+
+                                    <th style="background:#139597;">
+                                        @Html.DisplayFor(x => pacient)
+                                    </th>
+                                        }
+                                        else
+                                        {
+                                    <th style="background:#139597;">
+                                        @Html.DisplayFor(x=>free)
+                                    </th>
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                    <th>
+                                        @Html.DisplayFor(x => date)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayFor(x => from)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayFor(x => to)
+                                    </th>
+                                        if (item.PacientId != null)
+                                        {
+                                            string pacient = item.Pacient.Name + " " + item.Pacient.Surname;
+
+                                    <th>
+                                        @Html.DisplayFor(x => pacient)
+                                    </th>
+                                        }
+                                        else
+                                        {
+                                    <th>
+                                        @Html.DisplayFor(x => free)
+                                    </th>
+                                        }
+                                    }
+                            </tr>
+                            }
+                            </tbody>
+                        </table>
+                    }
+                    else
+                    {
+
+                        <div class="input-field col l12 m12 s12" style="margin-bottom:50px;">
+                            <h4 class="center">
+                                Hasn't been added any record
+                            </h4>
+                        </div>
+
+                    }
+                </div>
+
+            </div>
+        </div>
+        <div class="center">
+            @Html.PagedListPager(Model, page => Url.Action("WorkingJournal", new { page}))
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    $(document).ready(function () {
+
+        $(".addButton").click(function () {
+            if ($(".AjaxForm").is(":hidden")) {
+                $(".AjaxForm").show("slow");
+            } else {
+                $(".AjaxForm").hide("slow");
+
+            }
+            return false;
+        });
+    });
+
+</script>

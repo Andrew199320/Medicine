@@ -1,0 +1,42 @@
+﻿@using Medicine.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+}
+
+<div class="container">
+    <div class="row">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col l4 push-l4 m4 push-m4 s12 card z-depth-1-half form-wraper">
+                    <div class="red-circle">
+                        <i class="material-icons medium center">near_me</i>
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
+                        <input type="text" placeholder="EMAIL" name="Email" />
+                    </div>
+
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
+                        <input type="password" placeholder="PASSWORD" name="Password"  />
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1">
+                        <input class="btn log-in-btn" type="submit" value="Log in" />
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 center reg-account">
+                        <span>Don't have account? <a href="@Url.Action("Register","Account")">Register</a></span>
+                    </div>
+                </div>
+            }
+        </section>
+
+    </div>
+</div>
+@*<section id="socialLoginForm">
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

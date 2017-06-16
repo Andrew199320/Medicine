@@ -1,0 +1,194 @@
+﻿
+/*------ Main gape Admin Panel ------*/
+
+
+body {
+    margin:0;
+    padding:0;
+}
+
+.cardWrap {
+    background-color: #00acc1;
+}
+
+.cardText {
+    color: white;
+}
+
+.cardIcon i {
+    font-size: 6em;
+    color: white;
+    opacity: 0.9;
+}
+
+.cardWrap:hover {
+    box-shadow: 10px 10px 10px 0 rgba(0, 0, 0, 0.2), 10px 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
+.wrapper{
+    background-color: #00acc1;
+    height:80px;
+}
+.wrapper .logo{
+    margin-left:20px;
+    height:80px;
+    width:auto;
+}
+.adminMenu{
+    float:right;
+}
+.adminMenu ul{
+    margin-top:0px!important;
+    margin-bottom:0px!important;
+}
+.adminMenu li{
+    display:inline-block;   
+}
+.adminMenu li a{
+    color:black;
+    display:block;
+
+    padding:20px;
+    margin-right:5px;
+    margin-top:6px;
+    background-color: #E5F7F9;
+    font-weight:500;
+    border-radius:3px;
+    font-size: large;
+}
+.adminMenu li a:hover{
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+    font-weight:600;
+}
+.pagination{
+
+}
+.pagination li.active {
+    background-color: #00acc1;
+}
+
+/*------ End of Admin Panel Page ------*/
+
+/*--------Delete, Edit, Save Buttons ----------*/
+a.iconClass {
+    margin: 0px;
+    padding-left: 10px;
+    padding-right: 10px;
+    float: right;
+    margin: 2px;
+}
+
+    a.iconClass i {
+        font-size: 2em;
+        padding: 0;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        margin: 0px;
+    }
+
+.iconEdit {
+    background-color: #00bbfc;
+    color: #fefcfc;
+}
+
+.iconDelete {
+    background-color: #a70d0d;
+    color: #f5f5f5;
+}
+
+.iconEdit:hover {
+    background-color: #00bbfc;
+    color: #000000;
+}
+
+.iconDelete:hover {
+    background-color: #a70d0d;
+    color: #000000;
+}
+
+a.buttonsColor {
+    background-color: #00acc1;
+    margin-top: 2px;
+}
+
+    a.buttonsColor:hover {
+        background-color: #00acc1;
+        color: black;
+    }
+
+    a.buttonsColor > i {
+        font-size: 2em;
+    }
+
+.wrapIcon > i {
+    color: black;
+    font-size: 2em;
+}
+
+.cardWrapper {
+    background-color: #ff0000;
+}
+
+.iconWrapper {
+    background-color: #1ca460;
+}
+
+    .iconWrapper > i {
+        font-size: 10em;
+    }
+
+    .iconWrapper:hover {
+        background-color: #139597;
+    }
+
+.submitButton {
+    background-color: #00acc1;
+}
+
+    .submitButton:hover {
+        background-color: #00acc1;
+    }
+
+.marginTop {
+    margin-top: -20px !important;
+}
+
+.avatarPicture {
+    height: 150px;
+    width: 150px;
+    margin-left: 10px;
+}
+
+.tableLine {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+    .tableLine:hover {
+        background-color: rgba(0, 0, 0, 0.2) !important;
+    }
+
+.iconAdd {
+    background-color: #1ca460;
+    color: #fefcfc;
+}
+
+    .iconAdd:hover {
+        background-color: #1ca460;
+        color: #000000;
+    }
+/*--------Delete, Edit, Save ----------*/
+/*---------Red button add -----------*/
+.buttonHidden {
+    display: none;
+}
+
+.buttonShowed {
+    display: block;
+}
+/*--------End of red button add------ */
+.addButton {
+    position: absolute;
+    left: 0;
+    bottom: -10px;
+}
