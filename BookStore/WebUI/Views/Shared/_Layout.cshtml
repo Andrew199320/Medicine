@@ -10,13 +10,25 @@
 </head>
 <body>
 
+    <div class="row">
+        <div class="col l2 m4 s12">
+            <menu>
+              @Html.Action("Menu","Nav")
+            </menu>
+        </div>
 
-    <div>
-        @RenderBody()
+        <main class="col l8 m8 s12">
 
-    
+            @RenderBody()
+
+        </main>
     </div>
+    <footer>
+
+    </footer>
+
     <script src="~/Scripts/jquery-3.1.1.min.js"></script>
     <script src="~/Scripts/materialize/materialize.min.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
 </body>
 </html>

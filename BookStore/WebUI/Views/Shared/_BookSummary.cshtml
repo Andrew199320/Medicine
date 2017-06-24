@@ -1,0 +1,12 @@
+﻿@model Domain.Entities.Book
+
+<div class="card">
+    <div>
+        <h4>@Model.Name - @Model.Author </h4>
+        <p>@Model.Description</p>
+    </div>
+    <div class="">
+        <h5>@Model.Price.ToString("# $")</h5>
+    </div>
+</div>
+<hr />
