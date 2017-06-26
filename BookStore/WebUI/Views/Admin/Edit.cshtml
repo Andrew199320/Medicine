@@ -1,0 +1,23 @@
+﻿@model Domain.Entities.Book
+
+@{
+    ViewBag.Title = "Edit book";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="container">
+    <div class="row">
+        <div class="card-title">
+            <h4>Edit book</h4>
+        </div>
+        <div class="">
+            @using (Html.BeginForm())
+            {
+                @Html.EditorForModel()   
+                <div>
+                    <input type="submit" value="Save" class="btn yellow" />
+                    @Html.ActionLink("Cancel", "Index", null, null, new { @class = "btn red" })
+                </div>
+            }
+        </div>
+    </div>
+</div>

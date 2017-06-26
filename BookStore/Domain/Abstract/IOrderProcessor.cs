@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Domain.Abstract
 {
-    public interface IBookRepository
+    public interface IOrderProcessor
     {
-        IEnumerable<Book> Books { get; }
-        void SaveBook(Book book);
+        void ProcessorOrder(Cart cart, ShippingDetails shippingDetails);
     }
 }

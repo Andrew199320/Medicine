@@ -1,0 +1,33 @@
+﻿@{ 
+    Layout = null;
+}
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/materialize/css/materialize.min.css" rel="stylesheet" media="screen,projection" />
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="center" style="background-color:#29a599; height:30px; color: white;padding-top:5px;">
+                @if (TempData["message"] != null)
+                {
+                    <div>@TempData["message"]</div>
+                }
+            </div>
+                @RenderBody()
+          
+        </div>
+    </div>
+  
+    <script src="~/Scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/materialize/materialize.min.js"></script>
+</body>
+</html>

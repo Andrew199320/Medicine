@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Domain.Entities.Book>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div>
+            <h5>Books list</h5>
+        </div>
+        <table class="table striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.BookId)
+                </th>
+                <th >
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Author)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>Actions</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.BookId
+                    </td>
+                    <td>
+                       @Html.ActionLink(item.Name,"Edit",new { item.BookId})
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Genre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                       @using (Html.BeginForm("Delete","Admin"))
+                       {
+                           @Html.Hidden("BookId", item.BookId)
+                           <input type="submit" class="btn" value="Delete" />
+                       }
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <div>
+            @Html.ActionLink("Add New", "Create",null, new { @class = "btn" })
+        </div>
+    </div>
+ 
+</div>

@@ -1,0 +1,32 @@
+﻿@model Domain.Entities.ShippingDetails
+
+@{
+    ViewBag.Title = "BookStore: order form";
+}
+
+<h2>Make an order</h2>
+<p>Please, enter your data</p>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary()
+    <h5>Information</h5>
+    <div class="input-field">
+        <label>Your name:</label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName!= "Name")
+        {
+            <div class="input-field">
+                <label>
+                    @(property.DisplayName ?? property.PropertyName)
+                </label>
+             @Html.TextBox(property.PropertyName,null)
+                
+            </div>
+        }
+    }
+
+    <input type="submit" class="btn blue-grey" value="From order"/>
+}

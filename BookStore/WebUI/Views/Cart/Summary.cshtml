@@ -1,0 +1,13 @@
+﻿@model Domain.Entities.Cart
+
+<div>
+    @Html.ActionLink("Make order", "Index", "Cart",
+    new { returnUrl = Request.Url.PathAndQuery },
+    new { @class = "btn" })
+</div>
+
+<div>
+    <b>Your basket</b>
+    @Model.Lines.Sum(x=>x.Quantity) books,
+    @Model.ComputeTotalValue().ToString("# $")
+</div>

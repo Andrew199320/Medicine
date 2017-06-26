@@ -1,0 +1,47 @@
+﻿@model WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "BookStore: Your cart";
+}
+
+<h4>Index</h4>
+
+<table>
+    <thead>
+        <tr>
+            <th>Amount</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Sum</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td>@line.Quantity</td>
+                <td>@line.Book.Name @line.Book.Author</td>
+                <td>@line.Book.Price.ToString("# $")</td>
+                <td>@((line.Quantity*line.Book.Price).ToString("# $"))</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("BookId", line.Book.BookId)
+                        @Html.HiddenFor(x=>x.ReturnUrl)
+                        <input type="submit" class="btn red" value="Delete book" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>Total cost</td>
+            <td>@Model.Cart.ComputeTotalValue().ToString("# $")</td>
+        </tr>
+    </tfoot>
+</table>
+<div>
+    <a href="@Model.ReturnUrl" class="btn yellow">Continue shopping</a>
+    @Html.ActionLink("Form the order","Checkout","Cart",null, new { @class = "btn blue"})
+</div>

@@ -8,5 +8,13 @@
     <div class="">
         <h5>@Model.Price.ToString("# $")</h5>
     </div>
+    <div>
+        @using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            @Html.HiddenFor(x=>x.BookId)
+            @Html.Hidden("returnUrl",Request.Url.PathAndQuery)
+            <input type="submit" class="btn" value="Add to cart"/>
+        }
+    </div>
 </div>
 <hr />
