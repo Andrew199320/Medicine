@@ -5,8 +5,8 @@
 }
 
 <div class="container">
-    <div class="row">
-        <section id="loginForm">
+    <div class="row" style="min-height:600px;">
+        <section id="loginForm" style="margin-top:40px;">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()

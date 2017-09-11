@@ -35,9 +35,12 @@
                 </div>
             }
         </div>
-      
     </div>
 </div>
-<div class="center">
-    @Html.PagedListPager(Model, page => Url.Action("DoctorsView", new { page }))
-</div>
+@if (Model.Count > 12)
+{
+    <div class="center">
+        @Html.PagedListPager(Model, page => Url.Action("DoctorsView", new { page }))
+    </div>
+}
+<div style="height:150px;"></div>

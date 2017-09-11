@@ -11,11 +11,12 @@
             {
                 <div class="card history-wraper">
                     <span class="disease-name">Diseas: @item.DiseaseName</span>
+                    <span class="disease-name">Onset of disease @item.StartFrom.ToShortDateString()</span>
                     <span class="disease-name">Contraindications:</span>
                     <span class="diseas-description"> @item.Contraindications</span>
                     <span class="disease-name">Additional information:</span>
                     <span class="diseas-description">@item.AdditionalInformation</span>
-                    <span class="disease-name">Onset of disease @item.StartFrom.ToShortDateString()</span>
+                    
 
                     <span class="diseas-description" style="text-align:right!important;">posted: @item.WhenAdded</span>
                 </div>

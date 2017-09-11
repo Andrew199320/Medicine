@@ -8,6 +8,7 @@
 <script src="~/Scripts/air-datepicker-master/dist/js/datepicker.min.js"></script>
 @using (Html.BeginForm("EditDoctorByName", "Doctor", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
+    @Html.ValidationSummary()
     @Html.HiddenFor(model => Model.DoctorId)
     @Html.HiddenFor(model => Model.UserName)
     @Html.HiddenFor(model => Model.Email)
@@ -117,6 +118,7 @@
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 150 // Creates a dropdown of 15 years to control year
     });
+
 </script>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

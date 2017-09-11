@@ -16,7 +16,7 @@
 
                 @if (Model.Count > 0)
                 {
-                    <table class="responsive-table striped">
+                    <table class="responsive-table bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -48,9 +48,6 @@
                                 </th>
                                 <th>
                                     Email
-                                </th>
-                                <th>
-                                    History
                                 </th>
                                 <th></th>
                             </tr>
@@ -94,9 +91,6 @@
                                         @Html.DisplayFor(model => item.Email)
                                     </th>
                                     <th>
-                                        @*@Html.DisplayFor(model => item.DoctorType.Name)*@
-                                    </th>
-                                    <th>
                                         <a class="btn iconClass iconDelete " href="@Url.Action("DeletePacient", new { id = item.PacientId})"><i class="material-icons left">delete_forever</i></a>
                                     </th>
                                 </tr>
@@ -113,8 +107,13 @@
 
             </div>
         </div>
+
+        @if(Model.Count > 15)
+        {
         <div class="center">
-            @Html.PagedListPager(Model,page=>Url.Action("PacientList", new { page}))
+            @Html.PagedListPager(Model, page => Url.Action("PacientList", new { page }))
         </div>
+        }
+     
     </div>
 </div>

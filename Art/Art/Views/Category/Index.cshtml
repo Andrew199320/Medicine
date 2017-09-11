@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Art.Models.MainObjects.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<h2>Categories</h2>
+<a href="#" class="btn createCategory">Create new one</a>
+<table class="table categories-list">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.IdCategory)</th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<div class="popup">
+    <h5 class="center">New category</h5>
+    <br />
+    <input type="hidden" id="IdCategory" />
+    <br />
+    <input type="text" id="Name" placeholder="Name"/>
+    <br />
+    <input type="text" id="Description" placeholder="Description"/>
+    <br />
+    <a href="#" class="btn create">Save</a> 
+    <a href="#" class="btn btn-danger cancel">Cancel</a>
+
+</div>
+
+
+
+
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/crud_category/category_crud.js"></script>
+}

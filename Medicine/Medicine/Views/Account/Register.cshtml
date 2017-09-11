@@ -4,34 +4,36 @@
 }
 
 <div class="container">
-    <div class="row">
-        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <div class="col l5 push-l1 m7 s12 z-depth-1 hide-on-small-and-down reg-back">
-            </div>
-            <div class="col l5 push-l1 m5 s12 card form-fields">
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1 text-wrapper">
-                    <p>Create an account</p>
+    <div class="row" style="min-height:600px;">
+        <div style="margin-top:40px;">
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col l5 push-l1 m7 s12 z-depth-1 hide-on-small-and-down reg-back">
                 </div>
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
-                    <input type="text" placeholder="Email" name="Email" />
+                <div class="col l5 push-l1 m5 s12 card form-fields">
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 text-wrapper">
+                        <p>Create an account</p>
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
+                        <input type="text" placeholder="Email" name="Email" />
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
+                        <input type="password" placeholder="Password" name="Password" />
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
+                        <input type="password" placeholder="Password (repeat)" name="ConfirmPassword" />
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1 check-input">
+                        <input type="checkbox" class="filled-in" id="check" />
+                        <label for="check"> I agree with the <a href="@Url.Action("License","Home")">license terms.</a></label>
+                    </div>
+                    <div class="col l10 push-l1 m10 push-m1 s10 push-s1">
+                        <input class="btn log-in-btn" id="sbm" disabled type="submit" value="Register" />
+                    </div>
                 </div>
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
-                    <input type="password" placeholder="Password" name="Password" />
-                </div>
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1 input-style">
-                    <input type="password" placeholder="Password (repeat)" name="ConfirmPassword" />
-                </div>
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1 check-input">
-                    <input type="checkbox" class="filled-in" id="check" />
-                    <label for="check"> I agree with the <a href="@Url.Action("License","Home")">license terms.</a></label>
-                </div>
-                <div class="col l10 push-l1 m10 push-m1 s10 push-s1">
-                    <input class="btn log-in-btn" id="sbm" disabled type="submit" value="Register" />
-                </div>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
 <script src="~/Scripts/jquery-3.1.1.min.js"></script>

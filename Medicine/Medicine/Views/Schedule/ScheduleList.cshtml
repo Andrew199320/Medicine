@@ -16,7 +16,7 @@
 
                 @if (Model.Count > 0)
                 {
-                    <table class="responsive-table striped">
+                    <table class="responsive-table bordered">
                         <thead>
                             <tr>
                                 <th>
@@ -56,10 +56,11 @@
 
             </div>
         </div>
-        <div class="center">
-            @Html.PagedListPager(Model,page=>Url.Action("ScheduleList", new { page}))
-        </div>
+        @if (Model.Count > 10)
+        {
+            <div class="center">
+                @Html.PagedListPager(Model, page => Url.Action("ScheduleList", new { page }))
+            </div>
+        }
     </div>
 </div>
-
-

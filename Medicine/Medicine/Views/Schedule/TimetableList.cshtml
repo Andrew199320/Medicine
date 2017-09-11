@@ -32,7 +32,7 @@
                                     <th></th>
                                     <th>
                                         <a class="btn iconClass iconDelete" title="Delete" href="@Url.Action("DeleteTimetable", new { id = item.TimetableId})"><i class="material-icons left">delete_forever</i></a>
-                                        <a class="btn iconClass iconEdit " title="Add" href="@Url.Action("EditTimetable", new { id = item.TimetableId})"><i class="material-icons left">mode_edit</i></a>
+                                        <a class="btn iconClass iconEdit " title="Edit list with time" href="@Url.Action("EditTimetable", new { id = item.TimetableId})"><i class="material-icons left">mode_edit</i></a>
                                         <a class="btn iconClass iconAdd " title="Add new meeting time" href="@Url.Action("CreateMeetTime", new { id = item.TimetableId})"><i class="material-icons left">control_point</i></a>
                                     </th>
                                 </tr>
@@ -58,7 +58,7 @@
                                         </th>
                                         <th>
                                             <a class="btn iconClass iconDelete" title="Delete" href="@Url.Action("DeleteMeetTime", new { id = meet.MeetTimeId})"><i class="material-icons left">delete_forever</i></a>
-                                            <a class="btn iconClass iconEdit " title="Add" href="@Url.Action("EditMeetTime", new { id = meet.MeetTimeId})"><i class="material-icons left">mode_edit</i></a>
+                                            <a class="btn iconClass iconEdit " title="Edit" href="@Url.Action("EditMeetTime", new { id = meet.MeetTimeId})"><i class="material-icons left">mode_edit</i></a>
                                         </th>
                                     </tr>
                                 }
@@ -74,8 +74,11 @@
                 }
             </div>
         </div>
+        @if(Model.Count > 5)
+        {
         <div class="center">
-            @Html.PagedListPager(Model,page=>Url.Action("TimetableList", new {page }))
+            @Html.PagedListPager(Model, page => Url.Action("TimetableList", new { page }))
         </div>
+        }
     </div>
 </div>

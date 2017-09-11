@@ -1,0 +1,59 @@
+﻿@model IEnumerable<MyWeb.Models.Categories>
+
+@{
+    ViewBag.Title = "CategoriesList";
+    Layout = "~/Views/Shared/_MainPage.cshtml";
+}
+<h2>Categories List</h2>
+
+<p>
+    <a href="#" class="btn createNewCategory">Create new </a>
+</p>
+
+<table class="table " id="list-categories">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody> </tbody>
+</table>
+
+<div class="popup">
+    <h6 class="center"><strong>Add category</strong></h6>
+    <div class="cat-from">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td>
+                        <input type="hidden" class="form-control" id="IdCategory" />
+                        <input type="text" id="Name" placeholder="Name" />
+                        <input type="text" id="Description" placeholder="Description" />
+                    </td>
+                </tr>        
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn blue save">Save</button>
+                        <button type="reset" class="btn red close">Close</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script type="text/javascript" src="~/Scripts/CRUD Categories/crud_categories.js"></script>
+}
